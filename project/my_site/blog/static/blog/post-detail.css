@@ -185,12 +185,14 @@ main {
 }
 
 #comments ul {
+    display: block;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 #comments li {
+    display: block;
     margin-bottom: 1rem;
     border-bottom: 2px solid #ccc;
 }

@@ -2,7 +2,15 @@ from django import forms
 from .models import Comment, Post
 
 class CommentForm(forms.ModelForm):
+    """A form for creating a comment on a post.
+
+    :param forms: Django forms module
+    :type forms: module
+    """
     class Meta:
+        """
+        Meta class for CommentForm.
+        """
         model = Comment
         exclude = ["post"]
         labels = {
@@ -12,7 +20,16 @@ class CommentForm(forms.ModelForm):
         }
 
 class CreatePostForm(forms.ModelForm):
+    """
+    A form for creating a new post.
+
+    :param forms: Django forms module
+    :type forms: module
+    """
     class Meta:
+        """
+        Meta class for CreatePostForm.
+        """
         model = Post
         exclude = ["date","slug","author"]
         labels = {
@@ -24,6 +41,12 @@ class CreatePostForm(forms.ModelForm):
         }
 
 class CustomLoginForm(forms.Form):
+    """A custom login form that extends Django's built-in authentication form.
+
+    :param forms: Django forms module
+    :type forms: module
+    """
+
     username = forms.CharField(
         max_length=150,
         widget=forms.TextInput(attrs={"placeholder": "Username", "class": "form-control"})

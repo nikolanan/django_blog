@@ -1,0 +1,89 @@
+body {
+    background-color: #e7e7e7;
+}
+
+
+#main-navigation {
+    background-color: #390281;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+main {
+    width: 90%;
+    max-width: 60rem;
+    margin: 4rem auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+#add-post-form h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #390281;
+    margin-bottom: 2rem;
+}
+
+.form-control {
+    margin-bottom: 1.5rem;
+}
+
+.form-control label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control input,
+.form-control textarea,
+.form-control select {
+    display: block;
+    width: 100%;
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.form-actions button {
+    font: inherit;
+    background-color: #390281;
+    color: white;
+    border: 1px solid #390281;
+    padding: 0.6rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-actions button:hover,
+.form-actions button:active {
+    background-color: #4f0ba7;
+    border-color: #4f0ba7;
+}
+
+.errorlist {
+    list-style: none;
+    margin: 0.5rem 0 0 0;
+    padding: 0;
+    color: #d6000b;
+    font-size: 0.9rem;
+}
+
+.invalid label {
+    color: #d6000b;
+}
+
+.invalid input,
+.invalid textarea,
+.invalid select {
+    border-color: #d6000b;
+    background-color: #ffe6e7;
+}

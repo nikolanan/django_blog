@@ -1,14 +1,15 @@
 from django.db import models
 from django.core import validators
+from django.contrib.auth.models import User
+from django.utils.text import slugify
 # Create your models here.
 
 class Author(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.EmailField()
-
+    bio = models.TextField(null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True,default=None)
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        if self.user:
+            return f"{self.user.first_name} {self.user.last_name}"
 
 class Tag(models.Model):
     caption = models.CharField(max_length=20)
@@ -28,6 +29,11 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 class Comment(models.Model):
     user_name = models.CharField(max_length=120)

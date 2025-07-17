@@ -1,23 +1,43 @@
 {%load static%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     {%block css_files%}{%endblock%}
-    <link rel="stylesheet" href="{%static "app.css" %}">
+    <link rel="stylesheet" href="{%static 'app.css' %}">
 </head>
+
 <body>
     <header id="main-navigation">
         <h1> <a href="{% url "starting-page" %}">Nikola's blog</a> </h1>
-        <nav>
+        <nav class="navigation">
             <a href="{% url "read-later" %}">Stored posts</a>
             <a href="{% url "posts-page" %}">All posts</a>
+            <a href="{% url "add-posts" %}">Add posts</a>
+            {% if user.is_authenticated%}
+            <p>{{ user.username }} </p>
+            {%endif%}
+            {% if user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="POST">
+                    {% csrf_token %}
+                    <button class="logout-in-button" type="submit">Logout</button>
+                </form>
+            {% else %}
+                <form style="display: inline;" action="{% url 'login' %}" method="GET">
+                    <button class="logout-in-button" type="submit">Login</button>
+                </form>
+            {% endif %}
+
+
+
         </nav>
     </header>
     {%block content%}
 
     {%endblock%}
 </body>
+
 </html>

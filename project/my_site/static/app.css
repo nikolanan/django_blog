@@ -25,6 +25,7 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     padding: 0 10%;
     position: absolute;
     top: 0;
@@ -46,4 +47,38 @@ h3 {
 #main-navigation h1 a:hover,
 #main-navigation h1 a:active {
     color: white;
+}
+
+#main-navigation p {
+    color: white;
+    font-weight: bold;
+    margin-left: 1rem;
+    display: inline;
+    margin-left: 3rem;
+    margin-right: 0rem;
+}
+
+.logout-in-button {
+    background-color: #390281;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-in-button:hover,
+.logout-in-button:active {
+    background-color: #4b03a4;
+    transform: scale(1.02);
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 1rem; 
 }

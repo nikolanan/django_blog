@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{%block css_files%}
+    <link rel="stylesheet" href="{%static 'registration/login.css'%}">
+{%endblock%}
+
+{% block content %}
+<section id="login-form">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-fields">
+            {{ login_form }}
+            {% if error %}
+                {{error}}
+            {% endif %}
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html"%}
+{% load static %}
+
+{%block title%}
+    Add a post
+{%endblock%}
+
+{%block css_files%}
+    <link rel="stylesheet" href="{%static 'blog/add-posts.css'%}">
+{%endblock%}
+
+{%block content%}
+<main>
+    <section id="add-post-form">
+        <h2>Create a New Blog Post</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in create_form %}
+                <div class="form-control{% if field.errors %} invalid{% endif %}">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <ul class="errorlist">
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="form-actions">
+                <button type="submit">Publish Post</button>
+            </div>
+        </form>
+    </section>
+</main>
+{%endblock%}

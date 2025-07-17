@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from datetime import date
-from .models import Post, Comment
+from .models import Post, Comment, Author
 from django.views.generic import ListView
 from django.views.generic import View
-from .forms import CommentForm
+from .forms import CommentForm, CustomLoginForm,CreatePostForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -24,6 +26,7 @@ class StartingPageView(View):
         })
 
 class AllPostsView(View):
+
     def get(self,request):
         all_posts = Post.objects.all()
         return render(request, "blog/all-posts.html",{
@@ -99,3 +102,54 @@ class ReadLaterView(View):
         request.session["stored_posts"] = stored_posts
         
         return HttpResponseRedirect("/")
+
+class AddPostView(LoginRequiredMixin,View):
+    login_url = '/registration/login/'
+    
+    def get(self,request):
+        create_post_form = CreatePostForm()
+        context = {"create_form":create_post_form}
+        return render(request,"blog/add-post.html",context)
+    def post(self,request):
+        create_post_form = CreatePostForm(request.POST, request.FILES)  
+        if create_post_form.is_valid():
+            post = create_post_form.save(commit=False)
+            author = Author.objects.get(user=request.user)
+            post.author = author
+            post.save()
+            return redirect("post-detail", pk=post.pk)  
+        else:
+            context = {"create_form": create_post_form}
+            return render(request, "blog/add-post.html", context)
+
+class LoginView(View):
+    def get(self, request):
+        login_form = CustomLoginForm()
+        context = {"login_form":login_form}
+        return render(request, "registration/login.html",context)
+
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('/')  # Change this to your desired success URL
+        else:
+            login_form = CustomLoginForm()
+            return render(request, 'registration/login.html', {
+                'error': 'Invalid username or password',
+                "login_form":login_form
+            })
+        
+class RegisterView(View):
+    def get(self,request):
+        return render(request,reverse("register"))
+
+
+class LogoutView(View):
+    def post(self, request):
+        logout(request)
+        return redirect('login')

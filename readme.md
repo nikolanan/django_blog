@@ -47,7 +47,7 @@ This is a Django-based blog application that allows users to create, view, and c
 
 # Main page
 
-![Main page](images_of_project/Capture.PNG)
+![Main page](https://github.com/nikolanan/django_blog/blob/main/images_of_project/Capture.PNG)
 
 # Login page
 

@@ -51,8 +51,8 @@ This is a Django-based blog application that allows users to create, view, and c
 
 # Login page
 
-![Login page](images_of_project/capture2.png)
+![Login page](https://github.com/nikolanan/django_blog/blob/main/images_of_project/Capture2.PNG)
 
 # Page for adding posts
 
-![Page for adding posts](images_of_project/capture3.png)
+![Page for adding posts](https://github.com/nikolanan/django_blog/blob/main/images_of_project/Capture3.PNG)

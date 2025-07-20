@@ -38,7 +38,21 @@ This is a Django-based blog application that allows users to create, view, and c
 
 ## Features
 
-- Create, edit, and delete blog posts (admin only)
-- Register and log in as a user
+- Create, edit, and delete blog posts (admin only, users cannot go to the add post page)
+- Register(added via admin since it is a personal blog) and log in as a user
 - Comment on posts
 - Save posts for later reading (using sessions)
+
+## Pictures of the project
+
+# Main page
+
+![Main page](images_of_project/Capture.PNG)
+
+# Login page
+
+![Login page](images_of_project/capture2.png)
+
+# Page for adding posts
+
+![Page for adding posts](images_of_project/capture3.png)
